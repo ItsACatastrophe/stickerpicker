@@ -1,0 +1,44 @@
+{
+    "title": "test-pack",
+    "id": "test-pack",
+    "stickers": [
+        {
+            "body": "1171818134299230279",
+            "url": "mxc://catscodecorner.com/MOQQfFnjpHlXnyDTdkPApvCi",
+            "info": {
+                "w": 112,
+                "h": 112,
+                "size": 27037,
+                "mimetype": "image/png",
+                "thumbnail_url": "mxc://catscodecorner.com/MOQQfFnjpHlXnyDTdkPApvCi",
+                "thumbnail_info": {
+                    "w": 112,
+                    "h": 112,
+                    "size": 27037,
+                    "mimetype": "image/png"
+                }
+            },
+            "msgtype": "m.sticker",
+            "id": "sha256:c2c92bbaf69da23a721161abf4007179d13d7326b49471d5a85209e8d7ead5c1"
+        },
+        {
+            "body": "1171818136589307974",
+            "url": "mxc://catscodecorner.com/sKXpBXqUcqGeQyEdnVAzDETl",
+            "info": {
+                "w": 112,
+                "h": 112,
+                "size": 20164,
+                "mimetype": "image/png",
+                "thumbnail_url": "mxc://catscodecorner.com/sKXpBXqUcqGeQyEdnVAzDETl",
+                "thumbnail_info": {
+                    "w": 112,
+                    "h": 112,
+                    "size": 20164,
+                    "mimetype": "image/png"
+                }
+            },
+            "msgtype": "m.sticker",
+            "id": "sha256:3307b6d3808ff4f32538727232a54eb98f90d52a6a4921dc4dacaeda9240a284"
+        }
+    ]
+}
