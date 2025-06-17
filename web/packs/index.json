@@ -1,0 +1,6 @@
+{
+  "packs": [
+    "test-pack.json"
+  ],
+  "homeserver_url": "https://matrix.catscodecorner.com"
+}
