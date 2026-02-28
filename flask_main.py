@@ -13,7 +13,8 @@ class SessionSecuredStaticFlask(flask.Flask):
         # If an IP isn't authed it COULD be a new session. Refresh session list.
         # TODO: can probably make this request without hitting the internet. Over the docker network?
         response = requests.get(
-            url=f"https://matrix.catscodecorner.com/_synapse/admin/v2/users?from=0&limit=10&guests=false",
+            #url=f"https://matrix.catscodecorner.com/_synapse/admin/v2/users?from=0&limit=10&guests=false",
+            url=f"{os.getenv("DOCKER_NET_MATRIX_IP")}/_synapse/admin/v2/users?from=0&limit=10&guests=false",
             headers={
                 "Authorization": f"Bearer {os.getenv("MATRIX_ACCESS_TOKEN")}"
             }
@@ -24,7 +25,7 @@ class SessionSecuredStaticFlask(flask.Flask):
 
         for user_id in user_ids:
             response = requests.get(
-                url=f"https://matrix.catscodecorner.com/_synapse/admin/v1/whois/{user_id}",
+                url=f"{os.getenv("DOCKER_NET_MATRIX_IP")}/_synapse/admin/v1/whois/{user_id}",
                 headers={
                     "Authorization": f"Bearer {os.getenv("MATRIX_ACCESS_TOKEN")}"
                 }
