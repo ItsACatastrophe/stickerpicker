@@ -1,13 +1,15 @@
-import pathlib
 import flask
-import requests
+import logging
 import os
+import pathlib
+import requests
 
 ips_with_sessions = []
 
 class SessionSecuredStaticFlask(flask.Flask):
     def send_static_file(self, filename):
         if flask.request.remote_addr in ips_with_sessions:
+            app.logger.debug(f"{flask.request.remote_addr} found in IPs with sessions. No refresh needed.")
             return super(SessionSecuredStaticFlask, self).send_static_file(filename)
 
         # If an IP isn't authed it COULD be a new session. Refresh session list.
@@ -40,6 +42,7 @@ class SessionSecuredStaticFlask(flask.Flask):
         ips_with_sessions.append(flask.request.remote_addr)
 
         if flask.request.remote_addr in ips_with_sessions:
+            app.logger.debug(f"{flask.request.remote_addr} found in IPs with sessions after refresh.")
             return super(SessionSecuredStaticFlask, self).send_static_file(filename)
 
         return "<p>You're not auth'd, sorry!</p>"
@@ -53,3 +56,8 @@ def web():
 
 if __name__ == "__main__":
     app.run()
+
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
