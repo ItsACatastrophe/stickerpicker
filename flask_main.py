@@ -11,7 +11,7 @@ class SessionSecuredStaticFlask(flask.Flask):
         requester_ip = flask.request.headers.get("X-Real-IP")
 
         if requester_ip in ips_with_sessions:
-            app.logger.debug(f"{flask.request.remote_addr} found in IPs with sessions. No refresh needed.")
+            app.logger.debug(f"{requester_ip} found in IPs with sessions. No refresh needed.")
             return super(SessionSecuredStaticFlask, self).send_static_file(filename)
 
         # If an IP isn't authed it COULD be a new session. Refresh session list.
@@ -39,7 +39,7 @@ class SessionSecuredStaticFlask(flask.Flask):
                     ips_with_sessions.append(connection["ip"])
 
         if requester_ip in ips_with_sessions:
-            app.logger.debug(f"{flask.request.remote_addr} found in IPs with sessions after refresh.")
+            app.logger.debug(f"{requester_ip} found in IPs with sessions after refresh.")
             app.logger.debug(f"IPs with session after refresh: {ips_with_sessions}")
             return super(SessionSecuredStaticFlask, self).send_static_file(filename)
 
